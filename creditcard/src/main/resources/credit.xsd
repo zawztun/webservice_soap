@@ -1,0 +1,57 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://spring.io/guides/gs-producing-web-service"
+           targetNamespace="http://spring.io/guides/gs-producing-web-service" elementFormDefault="qualified">
+
+    <xs:element name="getCreditRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getCreditResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="customer" type="tns:card"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="getAllCardsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="getAllCardsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="collection" type="tns:card" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="card">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="total" type="xs:int"/>
+            <xs:element name="balance" type="xs:int"/>
+            <xs:element name="currency" type="tns:currency"/>
+            <xs:element name="cardType" type="tns:cardType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="currency">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="GBP"/>
+            <xs:enumeration value="EUR"/>
+            <xs:enumeration value="PLN"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="cardType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="MASTER"/>
+            <xs:enumeration value="VISA"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
